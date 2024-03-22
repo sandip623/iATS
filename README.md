@@ -14,3 +14,7 @@ flask blueprints for modularising api paths
 git rm -r --cached .
 git add .
 git commit -m "Fixed gitignore"
+
+# git branch
+git checkout -b new_branch_name
+git push origin branch_name
