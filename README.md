@@ -2,7 +2,7 @@
 
 - ats api integration x different sources | need to generate csv files as such APIs are not generally provisioned for applicants perspective | 2 dummy datasets created representing job application data with small variance in the field settings
 
-![Alt text](iATS%20erd.jpeg)
+![Alt text](iATS%20erd.jpg)
 
 - data class normalisation for consistencies | include data classes for users, applicant data
 
