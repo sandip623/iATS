@@ -33,9 +33,9 @@ class MySqlCls:
                 print("mysqlcls.disconnect(): nothing to close...")
         except mysql.connector.Error as e:
             print(f"Error at mysqlcls.disconnect(): {e}")
-    """Q"""
 
     def getDummyTable(self) -> None:
+        """Query to get the """
         try:
             self.connect()
             if (self.connection and self.cursor):
@@ -48,6 +48,8 @@ class MySqlCls:
                 print(f"mysqlcls.getDummyTable() connection or cursor not set...")
         except mysql.connector.Error as e:
             print(f"mysqlcls.getDummyTable() produced error: {e}")
+
+    
 
 myinstance = MySqlCls(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
 myinstance.getDummyTable()
