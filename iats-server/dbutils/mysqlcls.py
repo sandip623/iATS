@@ -33,6 +33,7 @@ class MySqlCls:
                 print("mysqlcls.disconnect(): nothing to close...")
         except mysql.connector.Error as e:
             print(f"Error at mysqlcls.disconnect(): {e}")
+    """Q"""
 
     def getDummyTable(self) -> None:
         try:

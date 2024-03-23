@@ -4,6 +4,11 @@
 
 - data class normalisation for consistencies | include data classes for users, applicant data
 
+- database partitioning: 
+Due to projected growth of data i.e., for Affiliations table; better to partition into multiple tables based on users and based on record limit for 'optimal' performance
+
+- use of ORM (object relational mapping) i.e., ../iats-server/dbutils/mysqlcls.py for streamlining database object management through the program.
+
 - login authentication 
 
 - client/server rest api functionality

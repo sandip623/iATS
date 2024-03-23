@@ -1,4 +1,4 @@
-"""Seed the database with data (project specific)"""
+"""Seed the database with data (project specific) for reproducability"""
 import os 
 from utils import ReadDataset
 
