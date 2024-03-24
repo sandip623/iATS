@@ -24,6 +24,7 @@ class MySqlCls:
             print(f"Error connecting to MySQL database: {e}")
 
     def disconnect(self) -> None:
+        """Disconnect method to be called upon completion of each connection query"""
         try:
             if (self.cursor and self.connection):
                 self.cursor.close()
@@ -33,6 +34,21 @@ class MySqlCls:
                 print("mysqlcls.disconnect(): nothing to close...")
         except mysql.connector.Error as e:
             print(f"Error at mysqlcls.disconnect(): {e}")
+
+    def createAllTables(self) -> None:
+        """Create all tables necessary if not exist in the db..."""
+        try:
+            if (self.connection == None or self.cursor == None):
+                self.connect()
+            """Create USERS table"""
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS users (userid INT, username VARCHAR(50), email VARCHAR(50), password VARCHAR(50), deleted INT DEFAULT 0"
+                                "PRIMARY KEY (userid))")            
+            """Create COMPANY table"""
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS applications (appid INT, userid INT, status) ")
+        except:
+            pass 
+        finally:
+            pass
 
     def getDummyTable(self) -> None:
         """Query to get the """
