@@ -6,5 +6,8 @@ from utils import ReadDataset
 DATASETPATH = os.path.join('dataset', 'jobapplications01.csv')
 dataset = []
 dataset.append(ReadDataset.readFromCsv(DATASETPATH))
-
+print(dataset)
+acer = "some string!"
+if acer:
+    print("Yessir!")
 """ Seed users table """
