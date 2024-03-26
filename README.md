@@ -6,6 +6,7 @@
 NB: for the purpose of this project, we are to focus on the Users and Applications entities, therefore the database will be seedcoded accordingly (i.e., additional entity such as Company may not be included)
 
 - data class normalisation for consistencies | include data classes for users, applicant data
+i.e., in "/models/users.py"
 
 - database partitioning: 
 Due to projected growth of data i.e., for Affiliations table; better to partition into multiple tables based on users and based on record limit for 'optimal' performance
@@ -13,6 +14,7 @@ Due to projected growth of data i.e., for Affiliations table; better to partitio
 - use of ORM (object relational mapping) i.e., ../iats-server/dbutils/mysqlcls.py for streamlining database object management through the program.
 
 - login authentication 
+(prior to applications table seeding as users.userid required as foreign key)
 
 - client/server rest api functionality
 mvc framework but server-side (flask) only for model/controllers, as views will be client-side (react)

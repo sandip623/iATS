@@ -41,7 +41,7 @@ class MySqlCls:
             if (self.connection == None or self.cursor == None):
                 self.connect()
             """Create USERS table"""
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS users (userid INT, username VARCHAR(50), email VARCHAR(50), password VARCHAR(50), deleted INT DEFAULT 0, "
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS users (userid INT AUTO_INCREMENT, username VARCHAR(50), email VARCHAR(50), password VARCHAR(50), deleted INT DEFAULT 0, "
                                 "PRIMARY KEY (userid));")            
             """Create COMPANY table"""
             self.cursor.execute("CREATE TABLE IF NOT EXISTS applications (appid INT AUTO_INCREMENT, userid INT, job_title VARCHAR(50), company_name VARCHAR(50), "
