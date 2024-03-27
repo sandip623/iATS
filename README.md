@@ -18,7 +18,7 @@ Due to projected growth of data i.e., for Affiliations table; better to partitio
 
 - client/server rest api functionality
 mvc framework but server-side (flask) only for model/controllers, as views will be client-side (react)
-flask blueprints for modularising api paths
+flask blueprints for modularising api paths, i.e., 'registration.py' for handling registration related api component
 
 # git caching issue
 git rm -r --cached .
