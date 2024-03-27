@@ -48,7 +48,7 @@ CORS(app, origins='http://localhost:3000')
 
 @app.route("/")
 def index():
-    return jsonify("bombaclart 23")
+    return jsonify("You are logged in...")
 
 if __name__ == "__main__":
     app.run(debug=True)

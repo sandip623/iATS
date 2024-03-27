@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { Router, Route, Routes } from 'react-router-dom'
+import RegistrationForm from './RegistrationForm'
 
+/*
 const fetchData = async () => {
     try {
         const response = await fetch("http://127.0.0.1:5000/");
@@ -25,6 +28,17 @@ function App() {
             <p>Data: {data}</p>
         </div>
         );
+}
+*/
+
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/register" component={RegistrationForm}/>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

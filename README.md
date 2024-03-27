@@ -14,7 +14,13 @@ Due to projected growth of data i.e., for Affiliations table; better to partitio
 - use of ORM (object relational mapping) i.e., ../iats-server/dbutils/mysqlcls.py for streamlining database object management through the program.
 
 - login authentication 
++ flask part:
 (prior to applications table seeding as users.userid required as foreign key)
+
++ react part:
+npm install react-router-dom
+RegistrationForm.jsx 
+
 
 - client/server rest api functionality
 mvc framework but server-side (flask) only for model/controllers, as views will be client-side (react)
