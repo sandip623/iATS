@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Router, Route, Routes } from 'react-router-dom'
-import RegistrationForm from './RegistrationForm'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './Header';
+import RegistrationForm from './RegistrationForm';
 
 /*
 const fetchData = async () => {
@@ -34,9 +35,12 @@ function App() {
 const App = () => {
     return (
         <Router>
-            <Routes>
-                <Route path="/register" component={RegistrationForm}/>
-            </Routes>
+            <div>
+                <Header />
+                    <Routes>
+                        <Route path="/register" element={<RegistrationForm />}/>
+                    </Routes>
+            </div>
         </Router>
     );
 }

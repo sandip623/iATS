@@ -1,9 +1,17 @@
-# iNTEGRATED APPLICATION TRACKING SYSTEM
++ Integrated Application Tracking System
 
-- ats api integration x different sources | need to generate csv files as such APIs are not generally provisioned for applicants perspective | 2 dummy datasets created representing job application data with small variance in the field settings
++ Job seekers who want to track applications across multiple platforms. Professionals looking for a modern and efficient way to manage their job applications. 
+
 
 ![Alt text](iATS%20erd.jpg)
 NB: for the purpose of this project, we are to focus on the Users and Applications entities, therefore the database will be seedcoded accordingly (i.e., additional entity such as Company may not be included)
+
+-----------------------------------------
+
+DEV NOTES (can be ignored by reader)
+
+- ats api integration x different sources | need to generate csv files as such APIs are not generally provisioned for applicants perspective | 2 dummy datasets created representing job application data with small variance in the field settings
+
 
 - data class normalisation for consistencies | include data classes for users, applicant data
 i.e., in "/models/users.py"

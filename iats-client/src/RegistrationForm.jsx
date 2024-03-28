@@ -1,10 +1,11 @@
+import React from 'react';
 import { useState } from 'react';
 
 const RegistrationForm = () => {
     return (
-        <>
-            <p>Registration Form</p>
-        </>
+        <div>
+            <h2>Registration Form</h2>
+        </div>
     );    
 };
 
