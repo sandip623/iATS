@@ -5,10 +5,10 @@ const Header = () => {
     let loggedIn = false // replace this with actual session data to conditionally render the relative nav bar components
     return (
         <header>
-            <nav className="container-fluid">
+            <nav>
                 {
                     loggedIn==false ?
-                    <ul className="nav navbar-nav">
+                    <ul>
                         <li><Link to="/Home">Home</Link></li>
                         <li><Link to="/Register">Register</Link></li>
                         <li><Link to="/SignIn">Sign In</Link></li>
