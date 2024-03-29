@@ -1,3 +1,52 @@
-.registration-form {
-    background-color: blue;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+.container-register {
+    padding: 16px;
+    background-color: white;
+}
+
+input[type=text], input[type=password] {
+    width:100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background-color: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid;
+    margin-bottom: 25px;
+}
+
+.registerBtn {
+    background-color: #04aa6d;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    opacity: 0.9;
+}
+
+.registerBtn:hover {
+    opacity: 1;
+}
+
+a {
+    color: dodgerblue;
+}
+
+.container-signin {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 16px 0 4px;
 }
