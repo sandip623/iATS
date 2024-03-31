@@ -37,12 +37,14 @@ const App = () => {
         <Router>
             <div>
                 <Header />
+                <div style= {{paddingTop: '90px'}}> {/* Add padding to create space - to stop the navbar overlapping the top of each page */}
                     <Routes>
                         <Route path="/" element={<p>Hello World!</p>}/>
                         <Route path="/Home" element={<p>Home Page</p>}/>
                         <Route path="/SignIn" element={<p>Sign In Page</p>}/>
-                        <Route path="/register" element={<RegistrationForm />}/>
+                        <Route path="/Register" element={<RegistrationForm />}/>
                     </Routes>
+                </div>    
             </div>
         </Router>
     );

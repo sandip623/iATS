@@ -1,13 +1,22 @@
 .navbar {
     background-color: skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    opacity: 1;
 }
 
 .navbar ul {
     list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 33.33%;
 }
 
 .navbar li {
-    display: inline;
     padding: 10px;
 }
 
@@ -19,4 +28,40 @@
 
 .navbar a:hover {
     color: white;
+    transition-duration: 0.5s;
+}
+
+
+/* dynamically reveal drop down content */
+.accountDropDown {
+    width: 100%;
+    position: absolute;
+}
+
+.accountDropDown .accountDropDownContent {
+    display: none;
+    position: absolute;
+    background-color: rgb(71, 138, 165);
+    transition: 0.5s ease;
+    width: 300px;
+    padding-left: 15px;
+    font-size:medium;
+}
+
+.accountDropDown:hover .accountDropDownContent {
+    display: block;
+    opacity: 0.9;
+}
+
+.accountDropDownContent li {
+    transition: transform 0.5s ease;
+}
+
+.accountDropDownContent li:hover {
+    transform: translateX(10px);
+}
+
+.accountDropDownContent li:hover b {
+    color: white;
+    transition: 0.5s;
 }
