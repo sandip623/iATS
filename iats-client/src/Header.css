@@ -1,0 +1,22 @@
+.navbar {
+    background-color: skyblue;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar li {
+    display: inline;
+    padding: 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    background-color: none;
+}
+
+.navbar a:hover {
+    color: white;
+}
