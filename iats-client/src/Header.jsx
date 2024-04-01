@@ -32,8 +32,9 @@ const Header = () => {
                     </ul>
                     :
                     <ul>
-                        <li><Link to="/Home">Home</Link></li>
-                        <li><Link to="/SignOut">Sign out</Link></li>
+                        <li className="home"><Link to="/Home"><b>HOME</b></Link></li>
+                        <li className="signOut"><Link to="/SignOut"><b>SIGN OUT</b></Link></li>
+                        <li className="support"><Link to="/Support"><b>SUPPORT</b></Link></li>
                     </ul>
                 }
             </nav>
