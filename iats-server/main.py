@@ -40,7 +40,7 @@ import requests
 
 response = requests.get("https://myjobs.indeed.com/applied").status_code
 
-from flask import Flask, jsonify, Blueprint
+from flask import Flask, jsonify, Blueprint, request
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -49,6 +49,12 @@ CORS(app, origins='http://localhost:3000')
 @app.route("/")
 def index():
     return jsonify("You are logged in...")
+
+@app.route("/submit-registration", methods=['POST'])
+def getData():
+    data = request.json
+    print(data)
+    return ("Received registration data")
 
 if __name__ == "__main__":
     app.run(debug=True)

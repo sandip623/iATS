@@ -1,4 +1,4 @@
-"""Seed the database with data (project specific) for reproducability"""
+""" Seed the database with data (project specific) for reproducability. """
 import os 
 from utils import ReadDataset
 
@@ -10,4 +10,6 @@ print(dataset)
 acer = "some string!"
 if acer:
     print("Yessir!")
+
+
 """ Seed users table """
