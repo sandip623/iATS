@@ -40,6 +40,7 @@ const RegistrationForm = () => {
             ...prevState, // spread operator to quickly copy previous state - good practice when modifying state objects 
             [name]: value // update the relative property (the variables 'name' and 'value' are key value obtained from the relative user field input)
         }));
+        console.log(e.target.value);
     }
 
     // wrapper function 
@@ -72,9 +73,9 @@ const RegistrationForm = () => {
                 <p>Please, fill in this form to create an account.</p>
                 <hr/>
                 <label htmlFor="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" className="email" id="email" required onChange={handleChangeFormData} />
+                <input type="text" placeholder="Enter Email" className="email" id="email" name="email" required onChange={handleChangeFormData} />
                 <label htmlFor="psw"><b>Password</b></label>
-                <input type="password" onChange={handleChange} onFocus={handlePasswordFocus} onBlur={handlePasswordBlur} value={inputPassword} placeholder="Enter Password" className="psw" id="psw" required/>
+                <input type="password" onChange={handleChange} onFocus={handlePasswordFocus} onBlur={handlePasswordBlur} value={inputPassword} placeholder="Enter Password" className="psw" id="psw" name="password" required/>
                 {/* Comment: the following divs are displayed when the password input field gains focus */}
                 <div className={`strength-indicator ${calculateStrength()}`}></div>
                 {isPasswordFocused && (
@@ -94,6 +95,7 @@ const RegistrationForm = () => {
                 <p>Already have an account? <a href='#'>Sign In</a>.</p>
             </div>
         </form>
+
     );    
 };
 
