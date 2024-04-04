@@ -5,10 +5,10 @@ import './Header.css';
 const AccountDropdown = () => {
     return (
         <>
-            <Link to="/SignIn"><b>ACCOUNT</b></Link>
+            <a href="/SignIn"><b>ACCOUNT</b></a>
             <ul class="accountDropDownContent">
-                <li><Link to="/Register"><b>Registration</b></Link></li>
-                <li><Link to="/SignIn"><b>Sign In</b></Link></li>
+                <li><a href="/Register"><b>Registration</b></a></li>
+                <li><a href="/SignIn"><b>Sign In</b></a></li>
             </ul>
         </>
     )
@@ -22,19 +22,20 @@ const Header = () => {
                 {
                     loggedIn==false ?
                     <ul>
+                        {/*
                         <li className="home"><Link to="/Home"><b>HOME</b></Link></li>
-                        {/* 
-                        <li><Link to="/Register"><b>REGISTER</b></Link></li>
-                        <li><Link to="/SignIn"><b>SIGN IN</b></Link></li>
-                        */}
                         <li className="accountDropDown"><AccountDropdown/></li>
                         <li className="support"><Link to="/Support"><b>SUPPORT</b></Link></li>
+                        */}
+                        <li className="home"><a href="/Home"><b>HOME</b></a></li>
+                        <li className="accountDropDown"><AccountDropdown/></li>
+                        <li className="support"><a href="/Support"><b>SUPPORT</b></a></li>
                     </ul>
                     :
                     <ul>
-                        <li className="home"><Link to="/Home"><b>HOME</b></Link></li>
-                        <li className="signOut"><Link to="/SignOut"><b>SIGN OUT</b></Link></li>
-                        <li className="support"><Link to="/Support"><b>SUPPORT</b></Link></li>
+                        <li className="home"><a href="/Home"><b>HOME</b></a></li>
+                        <li className="signOut"><a href="/SignOut"><b>SIGN OUT</b></a></li>
+                        <li className="support"><a href="/Support"><b>SUPPORT</b></a></li>
                     </ul>
                 }
             </nav>

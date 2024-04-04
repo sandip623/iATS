@@ -36,10 +36,6 @@ cursor.close()
 connection.close()
 """
 
-import requests
-
-response = requests.get("https://myjobs.indeed.com/applied").status_code
-
 from flask import Flask, jsonify, Blueprint, request
 from flask_cors import CORS
 

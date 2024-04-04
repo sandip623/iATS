@@ -60,6 +60,13 @@ const RegistrationForm = () => {
                 body: JSON.stringify(formData)
             });
 
+            // resopnse handling
+            if (response.ok) {
+                console.log('Registration data submitted successfully...');
+            } else {
+                console.error('Registration failed...');
+            }
+
             console.log('Submitted data, check server console...')
         } catch (error) {
             console.error('Error submitting registration: ', error);

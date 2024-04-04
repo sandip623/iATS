@@ -12,7 +12,6 @@ DEV NOTES (can be ignored by reader)
 
 - ats api integration x different sources | need to generate csv files as such APIs are not generally provisioned for applicants perspective | 2 dummy datasets created representing job application data with small variance in the field settings
 
-
 - data class normalisation for consistencies | include data classes for users, applicant data
 i.e., in "/models/users.py"
 
@@ -24,11 +23,11 @@ Due to projected growth of data i.e., for Affiliations table; better to partitio
 - login authentication 
 + flask part:
 (prior to applications table seeding as users.userid required as foreign key)
+- automate unit testing of flask endpoints with unit testing library (i.e., pytest) - unittest.py
 
 + react part:
 npm install react-router-dom
 RegistrationForm.jsx 
-
 
 - client/server rest api functionality
 mvc framework but server-side (flask) only for model/controllers, as views will be client-side (react)
