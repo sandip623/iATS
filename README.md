@@ -12,7 +12,7 @@ NB: for the purpose of this project, we are to focus on the Users and Applicatio
 
 # Cyber Security Management
 - CORS to be configured for delegating appropriate resource-sharing allowance
-- Cryptographic hash functions to be used for storing passwords securely (i.e., SHA3-256)
+- Cryptographic hash functions to be used for storing passwords securely (i.e., SHA3-256) - the salt will need storing alongside the password in DB. 
 
 -----------------------------------------
 
