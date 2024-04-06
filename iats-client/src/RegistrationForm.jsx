@@ -40,7 +40,6 @@ const RegistrationForm = () => {
             ...prevState, // spread operator to quickly copy previous state - good practice when modifying state objects 
             [name]: value // update the relative property (the variables 'name' and 'value' are key value obtained from the relative user field input)
         }));
-        console.log(e.target.value);
     }
 
     // wrapper function 

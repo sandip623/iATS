@@ -1,47 +1,12 @@
-"""
-import mysql.connector
-
-# Replace these values with your MySQL database credentials
-host = 'localhost'
-user = 'root'
-password = '21168250'
-database = 'iatsdb'
-
-# Connect to the MySQL database server
-try:
-    connection = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database
-    )
-    print("Connected to the MySQL database server")
-except mysql.connector.Error as e:
-    print(f"Error connecting to MySQL database: {e}")
-
-# Create a cursor object to execute SQL queries
-cursor = connection.cursor()
-
-# Example: Execute a SELECT query
-try:
-    cursor.execute("SELECT * FROM temp_table")
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-except mysql.connector.Error as e:
-    print(f"Error executing SQL query: {e}")
-
-# Close the cursor and connection
-cursor.close()
-connection.close()
-"""
-
 from flask import Flask, jsonify, Blueprint, request
 from flask_cors import CORS
+from controllers import reg
+from typing import Optional, Union, List
 
-app = Flask(__name__)
-CORS(app, origins='http://localhost:3000')
+#app = Flask(__name__)
+#CORS(app, origins='http://localhost:3000')
 
+"""
 @app.route("/")
 def index():
     return jsonify("You are logged in...")
@@ -50,7 +15,32 @@ def index():
 def getData():
     data = request.json
     print(data)
+    print(type(data))
     return ("Received registration data")
+"""
+
+"""CORS configuration parameters for the flask app"""
+CORS_CONFIG = {
+    "origins": ["http://localhost:3000"],
+    "methods": ["GET", "POST"],
+    "allow_headers": ["Content-Type"]
+ }
+
+"""list of Flask blueprints to be registered to the app instance"""
+BLUEPRINTS = [reg]
+
+def launch_application(app: Flask = None, cors_config: Optional[dict] = None, blueprints: List[Blueprint] = None) -> Flask:
+    """Launches a Flask application with optional CORS configuration"""
+    if app is None:
+        app = Flask(__name__)
+    if cors_config is not None:
+        """Unpack dictionary contents to be passed as K/V-pairs"""
+        CORS(app, **cors_config)
+    if blueprints is not None:
+        for blueprint in blueprints:
+            app.register_blueprint(blueprint)
+    return app 
 
 if __name__ == "__main__":
+    app = launch_application(cors_config=CORS_CONFIG, blueprints=BLUEPRINTS)
     app.run(debug=True)

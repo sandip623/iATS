@@ -7,11 +7,12 @@ reg = Blueprint('reg', __name__)
 @reg.route("/submit-registration", methods=['POST'])
 def getData():
     data = request.json
-    print(data)
     try:
-        pass
+        if data:
+            print(data)
+        return "200"
     except Exception as e:
-        pass 
+        print(f'Error at reg.getData(): {e}') 
+        return "500"
     finally:
-        pass 
-    return ("Received registration data")
+        return "304"
