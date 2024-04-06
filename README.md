@@ -10,6 +10,10 @@ NB: for the purpose of this project, we are to focus on the Users and Applicatio
 - Repository Design Pattern: used for separating concerns by creating a specific class for polling each entity.
 - MVC Pattern: model/controllers server-side (flask component), view client-side (react component)
 
+# Cyber Security Management
+- CORS to be configured for delegating appropriate resource-sharing allowance
+- Cryptographic hash functions to be used for storing passwords securely (i.e., SHA3-256)
+
 -----------------------------------------
 
 DEV NOTES (can be ignored by reader)
