@@ -6,6 +6,10 @@
 ![Alt text](iATS%20erd.jpg)
 NB: for the purpose of this project, we are to focus on the Users and Applications entities, therefore the database will be seedcoded accordingly (i.e., additional entity such as Company may not be included)
 
+# Software Design Patterns
+- Repository Design Pattern: used for separating concerns by creating a specific class for polling each entity.
+- MVC Pattern: model/controllers server-side (flask component), view client-side (react component)
+
 -----------------------------------------
 
 DEV NOTES (can be ignored by reader)

@@ -5,11 +5,13 @@ from models import User
 reg = Blueprint('reg', __name__)
 
 @reg.route("/submit-registration", methods=['POST'])
-def getData():
+def registerUser():
     data = request.json
     try:
         if data:
-            print(data)
+            # normalise data format in a based model
+
+            pass 
         return "200"
     except Exception as e:
         print(f'Error at reg.getData(): {e}') 

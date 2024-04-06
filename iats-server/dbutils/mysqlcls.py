@@ -2,6 +2,7 @@ import mysql.connector
 from mysqlconfig import DBCONFIG
 
 class MySqlCls:
+    """Class used to set the DB Context"""
     def __init__(self, host : str, username : str, password : str, database : str):
         self.host = host
         self.username = username
@@ -54,26 +55,36 @@ class MySqlCls:
         finally:
             if (self.connection or self.cursor):
                 self.disconnect()
-
-    def getDummyTable(self) -> None:
-        """Query to get the """
+ 
+    def countUser(self, email : str):
+        """Query to count the number of users with matching email / for checking if user already exists"""
         try:
-            self.connect()
-            if (self.connection and self.cursor):
-                self.cursor.execute("SELECT * FROM applications")
-                rows = self.cursor.fetchall()
-                for row in rows:
-                    print(row)
-                # self.disconnect()
-            else:
-                print(f"mysqlcls.getDummyTable() connection or cursor not set...")
+            if (self.connection == None or self.cursor == None):
+                self.connect()
+            self.cursor
+        except mysql.connect.Error as e:
+            print(f"Error at ") 
+
+    def selectUser(self, email : str):
+        """Query to get matching user record(s) from the users table"""
+        try:
+            if (self.connection == None or self.cursor == None):
+                self.connect()
+            self.cursor.execute(f"SELECT * FROM users WHERE users.email = {email};")
+            rows = self.cursor.fetchall()
+            if rows:
+                print(len(rows))
+                return rows
+            print(rows)
+            return None
         except mysql.connector.Error as e:
-            print(f"mysqlcls.getDummyTable() produced error: {e}")
+            print(f"Error at mysqlcls.selectUser(): {e}")
+            return None 
         finally:
             if (self.connection or self.cursor):
                 self.disconnect()
-
     
 
 myinstance = MySqlCls(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
-myinstance.createAllTables()
+#myinstance.createAllTables()
+myinstance.selectUser("'foobar@email.com'")
