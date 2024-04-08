@@ -14,6 +14,9 @@ NB: for the purpose of this project, we are to focus on the Users and Applicatio
 - CORS to be configured for delegating appropriate resource-sharing allowance
 - Cryptographic hash functions to be used for storing passwords securely (i.e., SHA3-256) - the salt will need storing alongside the password in DB. 
 
+# Network Protocols
+- Server ports to be hard-configured to control resource usage.
+
 -----------------------------------------
 
 DEV NOTES (can be ignored by reader)
