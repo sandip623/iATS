@@ -1,5 +1,4 @@
 import mysql.connector
-from mysqlconfig import DBCONFIG
 
 class MySqlCls:
     """Class used to set the DB Context"""
@@ -41,13 +40,27 @@ class MySqlCls:
         try:
             if (self.connection == None or self.cursor == None):
                 self.connect()
-            """Create USERS table"""
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS users (userid INT AUTO_INCREMENT, username VARCHAR(50), email VARCHAR(50), password VARCHAR(50), deleted INT DEFAULT 0, "
-                                "PRIMARY KEY (userid));")            
+            """Create USERS table - nb; SHA3-256 hash value are of 256 bits (32 bytes) => 64 hexademical characters => hence, fixed length to 64 for hash store"""
+            create_users_query = """CREATE TABLE IF NOT EXISTS users (
+                                    userid INT AUTO_INCREMENT, 
+                                    username VARCHAR(50) NOT NULL, 
+                                    email VARCHAR(50) NOT NULL, 
+                                    password VARCHAR(50) NOT NULL,
+                                    password_hash CHAR(64) NOT NULL, 
+                                    deleted INT DEFAULT 0, 
+                                    PRIMARY KEY (userid));"""
+            self.cursor.execute(create_users_query)            
             """Create COMPANY table"""
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS applications (appid INT AUTO_INCREMENT, userid INT, job_title VARCHAR(50), company_name VARCHAR(50), "
-                                " application_date DATE, application_status VARCHAR(50),"
-                                " PRIMARY KEY  (appid), FOREIGN KEY (userid) REFERENCES users(userid));")
+            create_applications_query = """CREATE TABLE IF NOT EXISTS applications (
+                                           appid INT AUTO_INCREMENT, 
+                                           userid INT, 
+                                           job_title VARCHAR(50), 
+                                           company_name VARCHAR(50), 
+                                           application_date DATE, 
+                                           application_status VARCHAR(50),
+                                           PRIMARY KEY  (appid), 
+                                           FOREIGN KEY (userid) REFERENCES users(userid));"""
+            self.cursor.execute(create_applications_query)
             self.connection.commit()
             print("mysqlcls.createAllTables()'s created tables and commited changes...")
         except mysql.connector.Error as e:
@@ -55,36 +68,3 @@ class MySqlCls:
         finally:
             if (self.connection or self.cursor):
                 self.disconnect()
- 
-    def countUser(self, email : str):
-        """Query to count the number of users with matching email / for checking if user already exists"""
-        try:
-            if (self.connection == None or self.cursor == None):
-                self.connect()
-            self.cursor
-        except mysql.connect.Error as e:
-            print(f"Error at ") 
-
-    def selectUser(self, email : str):
-        """Query to get matching user record(s) from the users table"""
-        try:
-            if (self.connection == None or self.cursor == None):
-                self.connect()
-            self.cursor.execute(f"SELECT * FROM users WHERE users.email = {email};")
-            rows = self.cursor.fetchall()
-            if rows:
-                print(len(rows))
-                return rows
-            print(rows)
-            return None
-        except mysql.connector.Error as e:
-            print(f"Error at mysqlcls.selectUser(): {e}")
-            return None 
-        finally:
-            if (self.connection or self.cursor):
-                self.disconnect()
-    
-
-myinstance = MySqlCls(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
-#myinstance.createAllTables()
-myinstance.selectUser("'foobar@email.com'")
