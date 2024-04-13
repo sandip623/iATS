@@ -1,8 +1,8 @@
 """ This will handle incoming requests from the registration frontend component """
 from flask import Blueprint, request
+# note the relative import(s) here works at flask run-time
 from models import User
-# note the relative import here works at flask run-time
-from .extension_functions import generate_salt, generate_hash
+from .extension_functions import generate_salt, generate_hash, extract_email_prefix
 
 reg = Blueprint('reg', __name__)
 
@@ -13,14 +13,18 @@ def registerUser():
         data = request.json
         if data:
             """ generate a hash for secure password store """
-            salt = generate_salt()
-
-            """ use regexp to strip username from email """
-            user = User(username='abc', email='abc@email.com', pwd='abc', pwd_hash='abc_hash', pwd_salt='abc_salt')
+            # salt = generate_salt()
+            """ data pre-process; using regexp helper functions to extract additional data """
+            username = extract_email_prefix(data['email'])
+            print(username)
+            """ check if email/user exists in db, otherwise create the user and return the respective response status """
+            
             ...
-        return "200"
+        return "200 your data was received..."
     except Exception as e:
         print(f'Error at reg.getData(): {e}') 
         ...
     finally:
         ...
+
+print(generate_hash('random', generate_salt()))

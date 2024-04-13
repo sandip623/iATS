@@ -2,10 +2,12 @@
 import re 
 
 def extract_email_prefix(email: str) -> str:
-    # regex pattern (r -> raw string i.e., treats backslashes as literal characters)
-    pattern = r'^[^@]+@'
+    """ regex pattern (r -> raw string i.e., treats backslashes as literal characters) """
+    pattern = r'^([^@]+)@'
     # use re.match() to find the first occurence of the pattern in the email
-    stripped_email = re.match(pattern, email)
-    print(stripped_email)
-
-extract_email_prefix('abc@email.com')
+    match = re.match(pattern, email)
+    if match:
+        prefix = match.group(1)
+    else:
+        prefix = None
+    return prefix

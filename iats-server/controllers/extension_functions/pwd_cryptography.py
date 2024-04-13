@@ -16,7 +16,7 @@ def generate_salt(length=16) -> str:
     # Generate a random byte encode string
     return secrets.token_bytes(length)
 
-def generate_hash(password : str, salt : str = generate_salt()) -> tuple:
+def generate_hash(password : str, salt : str) -> tuple:
     """
     Generate a SHA3-256 hash for the given password and salt...
     This function is to return a password digest, as well as the salt string used...
