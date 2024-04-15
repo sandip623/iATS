@@ -14,11 +14,13 @@ def registerUser():
         data = request.json
         if data:
             """ generate a hash for secure password store """
-            # salt = generate_salt()
+            salt = generate_salt()
+            hash = generate_hash(data['password'], salt)
             """ data pre-process; using regexp helper functions to extract additional data """
             username = extract_email_prefix(data['email'])
             """ check if email/user exists in db, otherwise create the user and return the respective response status """
-            #userdata = User(username=username, email=data['email'], pwd=data['password'], )
+            userdata = User(username=username, email=data['email'], pwd=data['password'], pwd_salt=salt, pwd_hash=hash)
+            print(userdata.pwd_salt)
             return jsonify(http.HTTPStatus.OK)
             ...
         return "200 your data was received..."
