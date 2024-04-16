@@ -13,7 +13,7 @@ class UserRepository(MySqlCls):
         try:
             if (self.connection == None or self.cursor == None):
                 self.connect()
-            query = f"SELECT * FROM users WHERE users.email = {email};"
+            query = f"SELECT * FROM users WHERE users.email = '{email}';"
             self.cursor.execute(query)
             rows = self.cursor.fetchall()
             if rows:
@@ -31,7 +31,7 @@ class UserRepository(MySqlCls):
         try:
             if (self.connection == None or self.cursor == None):
                 self.connect()
-            query = f"SELECT COUNT(*) FROM users WHERE users.email = {email};"
+            query = f"SELECT COUNT(*) FROM users WHERE users.email = '{email}';"
             self.cursor.execute(query)
             rows = self.cursor.fetchall()
             if rows:

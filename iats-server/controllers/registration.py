@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify
 # note the relative import(s) here works at flask run-time
 from models import User
 from .extension_functions import generate_salt, generate_hash, extract_email_prefix
+from dbutils import UserRepository, DBCONFIG
 import http
 
 reg = Blueprint('reg', __name__)
@@ -18,12 +19,18 @@ def registerUser():
             hash = generate_hash(data['password'], salt)
             """ data pre-process; using regexp helper functions to extract additional data """
             username = extract_email_prefix(data['email'])
-            """ check if email/user exists in db, otherwise create the user and return the respective response status """
             userdata = User(username=username, email=data['email'], pwd=data['password'], pwd_salt=salt, pwd_hash=hash)
-            print(userdata.pwd_salt)
+            """ check if email/user exists in db, otherwise create the user and return the respective response status """
+            dbinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
+            print(userdata.email)
+            dbresponse = dbinstance.countUser(userdata.email)
+            if dbresponse:
+                print(dbresponse)  
+            print(dbresponse)
+            """ submit data to db """
+            
             return jsonify(http.HTTPStatus.OK)
-            ...
-        return "200 your data was received..."
+        return jsonify(http.HTTPStatus.NO_CONTENT)
     except Exception as e:
         print(f'Error at reg.getData(): {e}') 
         ...
