@@ -44,6 +44,25 @@ class UserRepository(MySqlCls):
         finally:
             if (self.connection or self.cursor):
                 self.disconnect()
+
+    def createUser(self, userdata : tuple) -> str:
+        """Query used when registering a new user in the application"""
+        try:
+            print(self.connection)
+            if (self.connection == None or self.cursor == None):
+                self.connect()
+            query = f"""INSERT INTO users(username, email, pwd, pwd_hash, pwd_salt) 
+                        VALUES ('{userdata.username}', '{userdata.email}', '{userdata.pwd}', '{userdata.pwd_hash}', '{userdata.pwd_salt}');"""
+            self.cursor.execute(query)
+            self.connection.commit()
+            print("createUser() committed successfully")
+            return "createUser() called successfully..."
+        except mysql.connector.Error as e:
+            print(f"Error at UserRepository.countUser(): {e}") 
+            return e
+        finally:
+            if (self.connection or self.cursor):
+                self.disconnect()
     
 #myinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
 #myinstance.countUser("'foobar@email.com'")

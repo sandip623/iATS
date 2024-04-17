@@ -22,14 +22,11 @@ def registerUser():
             userdata = User(username=username, email=data['email'], pwd=data['password'], pwd_salt=salt, pwd_hash=hash)
             """ check if email/user exists in db, otherwise create the user and return the respective response status """
             dbinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
-            print(userdata.email)
             dbresponse = dbinstance.countUser(userdata.email)
-            if dbresponse:
-                print(dbresponse)  
-            print(dbresponse)
-            """ submit data to db """
-            
-            return jsonify(http.HTTPStatus.OK)
+            if dbresponse == 0: # only create user if not already exist
+                dbinstance.createUser(userdata)
+                return jsonify({"message":f"User {userdata.username} created"}), http.HTTPStatus.OK
+            return jsonify(http.HTTPStatus.NOT_ACCEPTABLE)
         return jsonify(http.HTTPStatus.NO_CONTENT)
     except Exception as e:
         print(f'Error at reg.getData(): {e}') 
