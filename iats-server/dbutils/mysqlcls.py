@@ -20,6 +20,7 @@ class MySqlCls:
             )
             print(f"Connected to the MySQL database: {self.database}")
             self.cursor = self.connection.cursor()
+            print(f"Cursor has been initialized...")
         except mysql.connector.Error as e:
             print(f"Error connecting to MySQL database: {e}")
 
@@ -30,6 +31,9 @@ class MySqlCls:
                 self.cursor.close()
                 self.connection.close()
                 print(f"Disconnected from database: {self.database}")
+                """re-set the cursor and connection to None"""
+                self.cursor = None
+                self.connection = None
             else:
                 print("mysqlcls.disconnect(): nothing to close...")
         except mysql.connector.Error as e:

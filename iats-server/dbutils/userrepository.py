@@ -1,6 +1,6 @@
 import mysql.connector 
 from .mysqlcls import MySqlCls
-#from mysqlconfig import DBCONFIG
+from .mysqlconfig import DBCONFIG
 
 class UserRepository(MySqlCls):
     """A repository class for managing user-related database operations..."""
@@ -31,6 +31,7 @@ class UserRepository(MySqlCls):
         try:
             if (self.connection == None or self.cursor == None):
                 self.connect()
+            #self.cursor = self.connection.cursor()
             query = f"SELECT COUNT(*) FROM users WHERE users.email = '{email}';"
             self.cursor.execute(query)
             rows = self.cursor.fetchall()
@@ -48,9 +49,9 @@ class UserRepository(MySqlCls):
     def createUser(self, userdata : tuple) -> str:
         """Query used when registering a new user in the application"""
         try:
-            print(self.connection)
             if (self.connection == None or self.cursor == None):
                 self.connect()
+            #self.cursor = self.connection.cursor()
             query = f"""INSERT INTO users(username, email, pwd, pwd_hash, pwd_salt) 
                         VALUES ('{userdata.username}', '{userdata.email}', '{userdata.pwd}', '{userdata.pwd_hash}', '{userdata.pwd_salt}');"""
             self.cursor.execute(query)
@@ -65,4 +66,4 @@ class UserRepository(MySqlCls):
                 self.disconnect()
     
 #myinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
-#myinstance.countUser("'foobar@email.com'")
+#myinstance.countUser("foobar@email.com")
