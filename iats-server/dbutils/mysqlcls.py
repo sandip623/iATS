@@ -50,8 +50,8 @@ class MySqlCls:
                                     username VARCHAR(50) NOT NULL, 
                                     email VARCHAR(50) NOT NULL, 
                                     pwd VARCHAR(50) NOT NULL,
-                                    pwd_hash CHAR(64) NOT NULL, 
-                                    pwd_salt CHAR(32) NOT NULL,
+                                    pwd_hash VARCHAR(64) NOT NULL, 
+                                    pwd_salt VARCHAR(32) NOT NULL,
                                     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                     deleted INT DEFAULT 0, 
                                     PRIMARY KEY (userid));"""

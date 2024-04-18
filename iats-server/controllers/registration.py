@@ -15,11 +15,13 @@ def registerUser():
         data = request.json
         if data:
             """ generate a hash for secure password store """
-            salt = generate_salt()
-            hash = generate_hash(data['password'], salt)
+            salt_bytes = generate_salt()
+            salt_hex = ...
+            # nb: we retrieve from index 0 as this part of the tuple contains the hash
+            hash = generate_hash(data['password'], salt_bytes)
             """ data pre-process; using regexp helper functions to extract additional data """
             username = extract_email_prefix(data['email'])
-            userdata = User(username=username, email=data['email'], pwd=data['password'], pwd_salt=salt, pwd_hash=hash)
+            userdata = User(username=username, email=data['email'], pwd=data['password'], pwd_salt=salt_bytes, pwd_hash=hash)
             """ check if email/user exists in db, otherwise create the user and return the respective response status """
             dbinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
             dbresponse = dbinstance.countUser(userdata.email)

@@ -31,7 +31,6 @@ class UserRepository(MySqlCls):
         try:
             if (self.connection == None or self.cursor == None):
                 self.connect()
-            #self.cursor = self.connection.cursor()
             query = f"SELECT COUNT(*) FROM users WHERE users.email = '{email}';"
             self.cursor.execute(query)
             rows = self.cursor.fetchall()
@@ -51,7 +50,6 @@ class UserRepository(MySqlCls):
         try:
             if (self.connection == None or self.cursor == None):
                 self.connect()
-            #self.cursor = self.connection.cursor()
             query = f"""INSERT INTO users(username, email, pwd, pwd_hash, pwd_salt) 
                         VALUES ('{userdata.username}', '{userdata.email}', '{userdata.pwd}', '{userdata.pwd_hash}', '{userdata.pwd_salt}');"""
             self.cursor.execute(query)
@@ -59,11 +57,8 @@ class UserRepository(MySqlCls):
             print("createUser() committed successfully")
             return "createUser() called successfully..."
         except mysql.connector.Error as e:
-            print(f"Error at UserRepository.countUser(): {e}") 
+            print(f"Error at UserRepository.createUser(): {e}") 
             return e
         finally:
             if (self.connection or self.cursor):
                 self.disconnect()
-    
-#myinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
-#myinstance.countUser("foobar@email.com")
