@@ -43,7 +43,3 @@ def generate_hash(password : str, salt : str) -> tuple:
     password_with_salt = password.encode() + salt
     password_hash = hashlib.sha3_256(password_with_salt).hexdigest()
     return password_hash
-
-salt = generate_salt() 
-print(type(salt))
-print(decode_bytes_to_hex(salt))
