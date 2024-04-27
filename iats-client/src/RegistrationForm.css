@@ -81,3 +81,18 @@ a {
     background-color : green;
     width: 100%;
 }
+
+/* Registration submission message */
+.message {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.success {
+    color: lightseagreen;
+}
+
+.error {
+    color: red;
+}

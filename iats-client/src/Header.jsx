@@ -22,11 +22,6 @@ const Header = () => {
                 {
                     loggedIn==false ?
                     <ul>
-                        {/*
-                        <li className="home"><Link to="/Home"><b>HOME</b></Link></li>
-                        <li className="accountDropDown"><AccountDropdown/></li>
-                        <li className="support"><Link to="/Support"><b>SUPPORT</b></Link></li>
-                        */}
                         <li className="home"><a href="/Home"><b>HOME</b></a></li>
                         <li className="accountDropDown"><AccountDropdown/></li>
                         <li className="support"><a href="/Support"><b>SUPPORT</b></a></li>

@@ -9,7 +9,7 @@ const RegistrationForm = () => {
     })
     const [inputPassword, setInputPassword] = useState('');
     const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-    
+    const [message, setMessage] = useState(''); // for dynamically handling submission feedback message...
 
     // specifically for handling changes on password input field
     const handleChange = (e) => {
@@ -42,7 +42,14 @@ const RegistrationForm = () => {
         }));
     }
 
-    // wrapper function 
+    /* submission feedback functions */
+    const showMessage = (text) => {
+        setMessage(text);
+        // clear the message after 3 seconds
+        setTimeout(() => {
+            setMessage('');
+        }, 9000);
+    }
 
     /* function to submit form data */
     const handleSubmit = async (e) => {
@@ -59,14 +66,24 @@ const RegistrationForm = () => {
                 body: JSON.stringify(formData)
             });
 
-            // resopnse handling
-            if (response.ok) {
-                console.log('Registration data submitted successfully...');
-            } else {
-                console.error('Registration failed...');
+            // get the response body (http status-code returned from flask endpoint)
+            const responseBody = await response.json();
+
+            if (responseBody == 200) {
+                showMessage("Your account was successfully registered...");
+            } else if (responseBody == 406) {
+                showMessage("Unable to create the account: "+responseBody)
             }
 
-            console.log('Submitted data, check server console...')
+            /*
+            if (response.ok) {
+                console.log('Registration data submitted successfully...');
+                showMessage('Registration successful!');
+            } else {
+                console.error('Registration failed...');
+                showMessage('Registration Failed...');
+            }
+            */
         } catch (error) {
             console.error('Error submitting registration: ', error);
         }
@@ -95,10 +112,11 @@ const RegistrationForm = () => {
                 <hr/>
                 <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
                 <button type="submit" className="registerBtn">Register</button>
-                <hr/>
-            </div>
+                {/* Comment: the following div is displayed upon submission... */}
+                {message && <div className={`message ${message.includes('successful') ? 'success' : 'error'}`}>{message}</div>}
+                </div>
             <div className="container-signin">
-                <p>Already have an account? <a href='#'>Sign In</a>.</p>
+                <p>Already have an account? <a href='/SignIn'>Sign In</a>.</p>
             </div>
         </form>
 

@@ -10,7 +10,7 @@ jira link: https://sandipgurung-1713207856685.atlassian.net/jira/software/projec
 
 # Software Design Patterns
 - Repository Design Pattern: used for separating concerns by creating a specific class for polling each entity.
-- MVC Pattern: model/controllers server-side (flask component), view client-side (react component)
+- MVC Pattern: model/controllers server-side (flask component - nb; could also use express.js but not for this project), view client-side (react component)
 
 # Cyber Security Management
 - CORS to be configured for delegating appropriate resource-sharing allowance

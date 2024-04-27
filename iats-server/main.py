@@ -6,19 +6,6 @@ from typing import Optional, Union, List
 #app = Flask(__name__)
 #CORS(app, origins='http://localhost:3000')
 
-"""
-@app.route("/")
-def index():
-    return jsonify("You are logged in...")
-
-@app.route("/submit-registration", methods=['POST'])
-def getData():
-    data = request.json
-    print(data)
-    print(type(data))
-    return ("Received registration data")
-"""
-
 """CORS configuration parameters for the flask app"""
 CORS_CONFIG = {
     "origins": ["http://localhost:3000"],
