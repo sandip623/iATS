@@ -9,7 +9,9 @@ const RegistrationForm = () => {
     })
     const [inputPassword, setInputPassword] = useState('');
     const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-    const [message, setMessage] = useState(''); // for dynamically handling submission feedback message...
+    const [message, setMessage] = useState(''); // for dynamically handling submission feedback message...#
+    const [inputPasswordRe, setInputPasswordRe] = useState('');
+    const [isPasswordMatch, setIsPasswordMatch] = useState(false);
 
     // specifically for handling changes on password input field
     const handleChange = (e) => {
@@ -51,10 +53,31 @@ const RegistrationForm = () => {
         }, 9000);
     }
 
+    // **** event handler function to check if the input passwords match ***
+    
+    // update re-password state
+    const handleChangePasswordRe = (e) => {
+        setInputPasswordRe(e.target.value);
+    }
+
+    const checkPasswords = () => {
+        if (formData.password !== inputPasswordRe) {
+            setIsPasswordMatch(false);
+            showMessage("Passwords do not match.");
+            return isPasswordMatch;
+        }
+        setIsPasswordMatch(true);
+        return isPasswordMatch;
+    }
+
     /* function to submit form data */
     const handleSubmit = async (e) => {
         // prevent default form submission behaviour (i.e., page reload)
         e.preventDefault();
+        // If the passwords do not match, the function stops executing further and prevents the form from being submitted.
+        if (!checkPasswords()) {
+            return;
+        }
         try {
             // send a POST request to the relative flask server endpoint
             const response = await fetch('http://localhost:5000/submit-registration', 
@@ -71,19 +94,11 @@ const RegistrationForm = () => {
 
             if (responseBody == 200) {
                 showMessage("Your account was successfully registered...");
-            } else if (responseBody == 406) {
-                showMessage("Unable to create the account: "+responseBody)
-            }
-
-            /*
-            if (response.ok) {
-                console.log('Registration data submitted successfully...');
-                showMessage('Registration successful!');
+            } else if (responseBody == 406 || responseBody == 500) {
+                showMessage("Unable to create the account: "+responseBody);
             } else {
-                console.error('Registration failed...');
-                showMessage('Registration Failed...');
+                showMessage("Something went wrong. Please, try again later.");
             }
-            */
         } catch (error) {
             console.error('Error submitting registration: ', error);
         }
@@ -108,7 +123,7 @@ const RegistrationForm = () => {
                     </ul>
                 </div>)}   
                 <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" className="psw-repeat" id="psw-repeat" required/>
+                <input type="password" placeholder="Repeat Password" className="psw-repeat" id="psw-repeat" onChange={handleChangePasswordRe} required/>
                 <hr/>
                 <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
                 <button type="submit" className="registerBtn">Register</button>
