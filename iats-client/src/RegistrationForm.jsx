@@ -60,6 +60,7 @@ const RegistrationForm = () => {
         setInputPasswordRe(e.target.value);
     }
 
+    // check if the passwords match
     const checkPasswords = () => {
         if (formData.password !== inputPasswordRe) {
             setIsPasswordMatch(false);
@@ -100,7 +101,9 @@ const RegistrationForm = () => {
                 showMessage("Something went wrong. Please, try again later.");
             }
         } catch (error) {
+            // any other case, i.e., if server down then display error message as well:
             console.error('Error submitting registration: ', error);
+            showMessage("Something went wrong. Please, try again later.");
         }
     }
 
