@@ -8,12 +8,21 @@ const SigninForm = () => {
     // handler for updating input data state variable (formData)
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        // update form data by spreading existing state (spread operator in react is used for update or merge objects and arrays)
+        // update form data by spreading existing state 
         setFormData({ ...formData, [name]: value }); 
     };
 
+    // handler for submit action
+    // async keyword used to declare an asynchronous function
+    // parameter 'e' represents an event object passed to the event handler function (in this case, the form submission event)
+    const handleSubmit = async (e) => {
+        // stop the default behaviour of page refresh upon a submit action
+        e.preventDefault();
+        console.log("submission attempted...")
+    };
+
     return (
-        <form method="POST">
+        <form method="POST" onSubmit={handleSubmit}>
             <div className="container-signin">
                 <h2><b>Sign In</b></h2>
                 <p>Please, fill in this form with your account details</p>
