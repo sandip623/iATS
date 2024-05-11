@@ -18,7 +18,12 @@ const SigninForm = () => {
     const handleSubmit = async (e) => {
         // stop the default behaviour of page refresh upon a submit action
         e.preventDefault();
-        console.log("submission attempted...")
+        try {
+            // send a http POST request containing submission data to the backend server
+            const response = await fetch()
+        } catch {
+            
+        };
     };
 
     return (

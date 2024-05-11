@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import './RegistrationForm.css';
+import BASE_URL from './config.js';
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
@@ -81,7 +82,8 @@ const RegistrationForm = () => {
         }
         try {
             // send a POST request to the relative flask server endpoint
-            const response = await fetch('http://localhost:5000/submit-registration', 
+            // const response = await fetch('http://localhost:5000/submit-registration', 
+            const response = await fetch(`${BASE_URL}/submit-registration`, 
             {
                 method: 'POST',
                 headers: {
