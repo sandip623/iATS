@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, Blueprint, request
 from flask_cors import CORS
-from controllers import reg
+from controllers import reg, signin
 from typing import Optional, Union, List
 
 #app = Flask(__name__)
@@ -14,7 +14,7 @@ CORS_CONFIG = {
  }
 
 """list of Flask blueprints to be registered to the app instance"""
-BLUEPRINTS = [reg]
+BLUEPRINTS = [reg, signin]
 
 def launch_application(app: Flask = None, cors_config: Optional[dict] = None, blueprints: List[Blueprint] = None) -> Flask:
     """Launches a Flask application with optional CORS configuration"""

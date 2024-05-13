@@ -33,5 +33,3 @@ def registerUser():
     except Exception as e:
         print(f'Error at reg.getData(): {e}') 
         return e, http.HTTPStatus.INTERNAL_SERVER_ERROR
-
-print(generate_hash('random', generate_salt()))

@@ -9,9 +9,18 @@ signin = Blueprint('signin', __name__)
 
 @signin.route("/submit-signin", methods=['POST'])
 def signinUser():
-    """ Check if user exists """
-    ...
-    """ If exists, proceed with sign in validation """
-    ...
-    """ If not exists, throw user not found error """
-    ...
+    try:
+        """ Get the http request content if applicable """
+        data = request.json
+        if data is not None:
+            """ Check if user exists """
+            dbinstance = UserRepository(DBCONFIG['host'], DBCONFIG['username'], DBCONFIG['password'], DBCONFIG['database'])
+            dbresponse = dbinstance.countUser(data['email'])
+            """ If exists (i.e., user count is 1), proceed with sign in validation """
+            if dbresponse:
+                username = extract_email_prefix(data['email'])
+            """ If not exists, throw user not found error """
+            ...
+        return jsonify(200)        
+    except Exception as e:
+        return jsonify(400)
